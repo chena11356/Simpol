@@ -16,5 +16,5 @@ limitations under the License. -->
     <dimen name="fab_margin">50dp</dimen>
     <dimen name="small_padding">6dp</dimen>
     <dimen name="big_padding">16dp</dimen>
-    <dimen name="view_pager_gap">2dp</dimen>
+    <dimen name="view_pager_gap">16dp</dimen>
 </resources>

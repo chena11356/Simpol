@@ -54,10 +54,10 @@ public class Politicians extends Fragment {
 
     private void setUpTabLayout() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        /*Replace new Fragment() with the appropriate fragment class (my elected officials, general, etc.)*/
-        adapter.add(new Fragment(), "Frag1");
-        adapter.add(new Fragment(), "Frag2");
-        adapter.add(new Fragment(), "Frag3");
+        /*Replace new Me() with the appropriate fragment class (my elected officials, general, etc.)*/
+        adapter.add(new Me(), "Frag1");
+        adapter.add(new Me(), "Frag2");
+        adapter.add(new Me(), "Frag3");
         viewPager.setAdapter(adapter);
         viewPager.setPageMargin((int) getResources().getDimension(R.dimen.view_pager_gap));
         viewPager.setPageMarginDrawable(R.color.background);

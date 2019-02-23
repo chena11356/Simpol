@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -53,9 +54,10 @@ public class Politicians extends Fragment {
 
     private void setUpTabLayout() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.add(new YourFragment1(), "Home");
-        adapter.add(new YourFragment2(), "Trending");
-        adapter.add(new YourFragment3(), "Friends");
+        /*Replace new Fragment() with the appropriate fragment class (my elected officials, general, etc.)*/
+        adapter.add(new Fragment(), "Frag1");
+        adapter.add(new Fragment(), "Frag2");
+        adapter.add(new Fragment(), "Frag3");
         viewPager.setAdapter(adapter);
         viewPager.setPageMargin((int) getResources().getDimension(R.dimen.view_pager_gap));
         viewPager.setPageMarginDrawable(R.color.background);

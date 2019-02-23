@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // navigation bar
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Log.d("anya","anya2");
     }
 
     public static Context getAppContext(){

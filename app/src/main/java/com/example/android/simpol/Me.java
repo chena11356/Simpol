@@ -94,7 +94,7 @@ public class Me extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_me, container, false);
 
-        RecyclerView recyclerView = getView().findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         final WordListAdapter adapter = new WordListAdapter(MainActivity.getAppContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.getAppContext()));
@@ -113,7 +113,7 @@ public class Me extends Fragment {
             }
         });
 
-        FloatingActionButton fab = getView().findViewById(R.id.fab);
+        FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

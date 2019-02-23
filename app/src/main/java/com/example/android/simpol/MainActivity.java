@@ -1,6 +1,7 @@
 package com.example.android.simpol;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Me.OnFragmentInteractionListener {
 
     private static Context context;
     Fragment selected = null;
@@ -57,5 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static Context getAppContext(){
         return MainActivity.context;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

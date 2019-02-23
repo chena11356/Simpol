@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_politicians"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="politicians" />
+
+    <item
+        android:id="@+id/navigation_issues"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="issues" />
+
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="me" />
+
+    <item
+        android:id="@+id/navigation_voting"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="voting" />
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="setting" />
+</menu>

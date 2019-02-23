@@ -4,10 +4,27 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.simpol.Politicians">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <android.widget.ScrollView
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="match_parent" >
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"/>
+            <!--android:theme="@style/CustomToolbarTheme"-->
+            <!--app:titleTextAppearance="@style/Toolbar.TitleText"-->
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.widget.ScrollView>
 </FrameLayout>

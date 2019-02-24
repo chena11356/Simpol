@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.android.simpol.Politicians.Politicians.Politicians;
-
+//TO-DO: https://stackoverflow.com/questions/23421701/how-to-apply-a-fade-in-fade-out-animation-when-replacing-a-fragment
 public class MainActivity extends AppCompatActivity implements Me.OnFragmentInteractionListener {
 
     private static Context context;
@@ -64,6 +66,14 @@ public class MainActivity extends AppCompatActivity implements Me.OnFragmentInte
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+        /*
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
 
+        ft.setCustomAnimations(android.R.anim.fade_in,
+                android.R.anim.fade_out);
+        ft.replace(android.R.id.realtabcontent, fragment);
+        ft.commit();
+        */
     }
 }

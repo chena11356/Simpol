@@ -1,4 +1,4 @@
-package com.example.android.simpol.Politicians.Politicians;
+package com.example.android.simpol.Politicians;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.simpol.Me;
-import com.example.android.simpol.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +19,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Politicians.OnFragmentInteractionListener} interface
+ * {@link Politician.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Politicians#newInstance} factory method to
+ * Use the {@link Politician#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Politicians extends Fragment {

@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.android.simpol.Politicians.Politicians;
+import com.example.android.simpol.Politicians.Politicians.Politicians;
+
 public class MainActivity extends AppCompatActivity implements Me.OnFragmentInteractionListener {
 
     private static Context context;

@@ -18,6 +18,18 @@ limitations under the License. -->
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="buttonLabel">#d3d3d3</color>
-    <color name="background">#ece8ef</color>
+    <color name="background">#CEC4CE</color>
     <color name="white">#FFFFFF</color>
+    <color name="redLight">#FFB88E</color>
+    <color name="red">#F26B37</color>
+    <color name="redDark">#AB3427</color>
+    <color name="blueLight">#B2E0E8</color>
+    <color name="blue">#42A7E5</color>
+    <color name="blueDark">#3152A5</color>
+    <color name="grayLight">#CEC4CE</color>
+    <color name="grayLighter">#ECE8EF</color>
+    <color name="gray">#999199</color>
+    <color name="grayDark">#706970</color>
+    <color name="grayDarker">#4F4D51</color>
+    <color name="black">#111011</color>
 </resources>

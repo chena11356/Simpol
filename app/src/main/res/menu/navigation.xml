@@ -2,26 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_politicians"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:title="politicians" />
+        android:icon="@drawable/ic_action_politicians"
+        android:title="Politicians"
+        android:theme="@style/Widget.BottomNavigationView" />
 
     <item
         android:id="@+id/navigation_issues"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:title="issues" />
+        android:icon="@drawable/ic_action_issues"
+        android:title="Issues"
+        android:theme="@style/Widget.BottomNavigationView"/>
 
     <item
         android:id="@+id/navigation_me"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:title="me" />
+        android:icon="@drawable/ic_action_me"
+        android:title="Me"
+        android:theme="@style/Widget.BottomNavigationView"/>
 
     <item
         android:id="@+id/navigation_voting"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:title="voting" />
+        android:icon="@drawable/ic_action_voting"
+        android:title="Voting"
+        android:theme="@style/Widget.BottomNavigationView"/>
 
     <item
         android:id="@+id/navigation_setting"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:title="setting" />
+        android:icon="@drawable/ic_action_settings"
+        android:title="Setting"
+        android:theme="@style/Widget.BottomNavigationView"/>
 </menu>

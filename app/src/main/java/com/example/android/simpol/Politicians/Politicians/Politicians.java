@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.simpol.Me;
+import com.example.android.simpol.R;
 
 import java.util.ArrayList;
 import java.util.List;

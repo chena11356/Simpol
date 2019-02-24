@@ -19,4 +19,5 @@ limitations under the License. -->
     <color name="colorAccent">#FF4081</color>
     <color name="buttonLabel">#d3d3d3</color>
     <color name="background">#ece8ef</color>
+    <color name="white">#FFFFFF</color>
 </resources>

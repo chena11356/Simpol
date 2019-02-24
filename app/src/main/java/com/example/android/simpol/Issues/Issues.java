@@ -1,4 +1,4 @@
-package com.example.android.simpol.Politicians;
+package com.example.android.simpol.Issues;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +17,28 @@ import com.example.android.simpol.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Politicians extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link Issues.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link Issues#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class Issues extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
     private OnFragmentInteractionListener mListener;
 
-    public Politicians() {
+    public Issues() {
         // Required empty public constructor
     }
 
-    public static Politicians newInstance() {
-        Politicians fragment = new Politicians();
+
+    // TODO: Rename and change types and number of parameters
+    public static Issues newInstance() {
+        Issues fragment = new Issues();
         return fragment;
     }
 
@@ -39,7 +50,7 @@ public class Politicians extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_politicians, container, false);
+        View view = inflater.inflate(R.layout.fragment_issues, container, false);
         tabLayout = view.findViewById(R.id.tabLayout);
         viewPager = view.findViewById(R.id.viewPager);
         setUpTabLayout();
@@ -48,14 +59,15 @@ public class Politicians extends Fragment {
     }
 
     private void setUpTabLayout() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.add(new MyPoliticians(), "Saved");
-        adapter.add(new AllPoliticians(), "All");
+        Issues.ViewPagerAdapter adapter = new Issues.ViewPagerAdapter(getFragmentManager());
+        adapter.add(new MyIssues(), "Saved");
+        adapter.add(new AllIssues(), "All");
         viewPager.setAdapter(adapter);
         viewPager.setPageMargin((int) getResources().getDimension(R.dimen.view_pager_gap));
         viewPager.setPageMarginDrawable(R.color.background);
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
+        Log.d("PPP", "PPP");
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {

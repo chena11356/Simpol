@@ -1,4 +1,4 @@
-package com.example.android.simpol.Politicians;
+package com.example.android.simpol;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,26 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.simpol.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MyPoliticians.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MyPoliticians#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MyPoliticians extends Fragment {
-
+public class Voting extends Fragment {
     private OnFragmentInteractionListener mListener;
 
-    public MyPoliticians() {
+    public Voting() {
         // Required empty public constructor
     }
 
-    public static MyPoliticians newInstance() {
-        MyPoliticians fragment = new MyPoliticians();
+    public static Voting newInstance() {
+        Voting fragment = new Voting();
         return fragment;
     }
 
@@ -40,7 +30,7 @@ public class MyPoliticians extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_politicians, container, false);
+        return inflater.inflate(R.layout.fragment_voting, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

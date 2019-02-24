@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.android.simpol.Issues.Issues;
 import com.example.android.simpol.Politicians.Politicians;
 
 //TO-DO: https://stackoverflow.com/questions/23421701/how-to-apply-a-fade-in-fade-out-animation-when-replacing-a-fragment
@@ -26,16 +27,15 @@ public class MainActivity extends AppCompatActivity implements Me.OnFragmentInte
             switch (item.getItemId()) {
                 case R.id.navigation_politicians:
                     selected = new Politicians();
-                    Log.d("LLL", "LLL");
                     break;
                 case R.id.navigation_issues:
-                    //mTextMessage.setText(R.string.title_dashboard);
+                    selected = new Issues();
                     break;
                 case R.id.navigation_me:
                     selected = new Me();
                     break;
                 case R.id.navigation_voting:
-                    //mTextMessage.setText(R.string.title_dashboard);
+                    selected = new Voting();
                     break;
                 case R.id.navigation_setting:
                     //mTextMessage.setText(R.string.title_notifications);

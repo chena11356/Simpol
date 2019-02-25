@@ -29,8 +29,7 @@ public class AllPoliticians extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static AllPoliticians newInstance() {
-        AllPoliticians fragment = new AllPoliticians();
-        return fragment;
+        return new AllPoliticians();
     }
 
     @Override
@@ -69,6 +68,8 @@ public class AllPoliticians extends Fragment {
 
     //do stuff in the doInBackground method
     private class getWebsite extends AsyncTask<Void, Void, Void>{
+        StringBuilder builder = new StringBuilder();
+
         @Override
         protected void onPreExecute() {
 
@@ -76,12 +77,10 @@ public class AllPoliticians extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            StringBuilder builder = new StringBuilder();
 
             try{
                 Document doc = Jsoup.connect("https://www.congress.gov/search?q=%7B%22source%22%3A%22members%22%2C%22congress%22%3A%22116%22%7D").get();
                 builder.append("Connected successfully to doc");
-                helloBlankFragment.setText(builder.toString());
             } catch (IOException error){
                 builder.append("Error: ").append(error.getMessage()).append("\n");
             }
@@ -90,7 +89,7 @@ public class AllPoliticians extends Fragment {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-
+            helloBlankFragment.setText(builder.toString());
         }
     }
 }

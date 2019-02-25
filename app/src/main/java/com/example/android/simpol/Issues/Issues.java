@@ -38,8 +38,7 @@ public class Issues extends Fragment {
 
     // TODO: Rename and change types and number of parameters
     public static Issues newInstance() {
-        Issues fragment = new Issues();
-        return fragment;
+        return new Issues();
     }
 
     @Override
@@ -60,8 +59,8 @@ public class Issues extends Fragment {
 
     private void setUpTabLayout() {
         Issues.ViewPagerAdapter adapter = new Issues.ViewPagerAdapter(getFragmentManager());
-        adapter.add(new MyIssues(), "Saved");
-        adapter.add(new AllIssues(), "All");
+        adapter.add(new MyIssues(), "Saved Issues");
+        adapter.add(new AllIssues(), "All Issues");
         viewPager.setAdapter(adapter);
         viewPager.setPageMargin((int) getResources().getDimension(R.dimen.view_pager_gap));
         viewPager.setPageMarginDrawable(R.color.background);

@@ -67,41 +67,51 @@ public class Voting extends Fragment {
     }
 
     private class getNextElection extends AsyncTask<Void, Void, Void>{
+        private String daysLeftText = "";
+        private String nextElectionDay;
 
         @Override
         protected Void doInBackground(Void... voids) {
             String[] labels = new String[] {" YEAR", " MONTH", " DAY"};
             int[] today = getDate();
-            int[] election = new int[] {11, getDay(today[0]), today[0]};
+            int[] election = new int[] {today[0], 11, getDay(today[0])};
             Period diff = Period.between(LocalDate.of(today[0], today[1], today[2]),
                     LocalDate.of(election[0], election[1], election[2]));
             int[] left = new int[] {diff.getYears(), diff.getMonths(), diff.getDays()};
 
-            String daysLeftText = "";
             for(int i = 0; i < labels.length; i++){
-                daysLeftText += " " + left[i] + labels[i];
-                if(left[i]>1){
-                    labels[i] += "S";
+                if(left[i]!=0){
+                    daysLeftText += " " + left[i] + labels[i];
+                    if(left[i]>1){
+                        daysLeftText += "S";
+                    }
                 }
             }
 
-            daysLeft.setText(daysLeftText);
-            nextElection.setText(election[1] + "/" + election[2] + "/" + election[0]);
+            nextElectionDay = election[1] + "/" + election[2] + "/" + election[0];
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            daysLeft.setText(daysLeftText);
+            nextElection.setText(nextElectionDay);
         }
 
         private int getDay(int year) {
             int cYear = year + year%2;
             try{
-                Document cDoc = Jsoup.connect("http://en.wikipedia.org/wiki/" + cYear + "_United_States_elections").get();
+                Document cDoc = Jsoup.connect("https://en.wikipedia.org/wiki/" + cYear + "_United_States_elections").get();
                 String cText = cDoc.select("p:contains(Tuesday)").text();
                 int cIndex = cText.indexOf("November") + 9;
-                int cIndex2 = cIndex;
+                int cIndex2 = cIndex+1;
                 if(cText.charAt(cIndex+1)!=','){
-                    cIndex2 = cIndex + 1;
+                    cIndex2 = cIndex + 2;
                 }
                 return Integer.parseInt(cText.substring(cIndex, cIndex2));
             } catch (IOException error){
+                Log.d("LLL", ""+error);
                 return -1;
             }
         }

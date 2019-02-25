@@ -30,7 +30,7 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
-        app:labelVisibilityMode="labeled"
+        app:labelVisibilityMode="unlabeled"
         style="@style/Widget.BottomNavigationView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

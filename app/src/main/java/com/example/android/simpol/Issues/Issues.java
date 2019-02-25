@@ -35,12 +35,6 @@ public class Issues extends Fragment {
         // Required empty public constructor
     }
 
-
-    // TODO: Rename and change types and number of parameters
-    public static Issues newInstance() {
-        return new Issues();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

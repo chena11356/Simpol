@@ -24,11 +24,6 @@ public class AllIssues extends Fragment {
         // Required empty public constructor
     }
 
-    public static AllIssues newInstance() {
-        AllIssues fragment = new AllIssues();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

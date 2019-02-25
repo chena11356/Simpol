@@ -27,11 +27,6 @@ public class AllPoliticians extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static AllPoliticians newInstance() {
-        return new AllPoliticians();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

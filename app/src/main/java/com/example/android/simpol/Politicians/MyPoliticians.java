@@ -26,11 +26,6 @@ public class MyPoliticians extends Fragment {
         // Required empty public constructor
     }
 
-    public static MyPoliticians newInstance() {
-        MyPoliticians fragment = new MyPoliticians();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

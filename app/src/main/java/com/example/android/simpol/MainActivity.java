@@ -16,13 +16,12 @@ import com.example.android.simpol.Politicians.Politicians;
 public class MainActivity extends AppCompatActivity implements Me.OnFragmentInteractionListener {
 
     private static Context context;
-    Fragment selected = null;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+            Fragment selected;
             switch (item.getItemId()) {
                 case R.id.navigation_politicians:
                     selected = new Politicians();
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements Me.OnFragmentInte
                     selected = new Voting();
                     break;
                 case R.id.navigation_setting:
-                    //mTextMessage.setText(R.string.title_notifications);
+                    selected = new Settings();
                     break;
                 default:
                     return false;

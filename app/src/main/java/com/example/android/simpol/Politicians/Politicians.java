@@ -43,7 +43,7 @@ public class Politicians extends Fragment {
     }
 
     private void setUpTabLayout() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.add(new MyPoliticians(), "Saved Politicians");
         adapter.add(new AllPoliticians(), "All Politicians");
         viewPager.setAdapter(adapter);

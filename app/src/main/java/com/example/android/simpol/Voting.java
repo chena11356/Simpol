@@ -74,7 +74,8 @@ public class Voting extends Fragment {
         protected Void doInBackground(Void... voids) {
             String[] labels = new String[] {" YEAR", " MONTH", " DAY"};
             int[] today = getDate();
-            int[] election = new int[] {today[0], 11, getDay(today[0])};
+            int[] temp = getDay(today[0]);
+            int[] election = new int[] {temp[0], 11, temp[1]};
             Period diff = Period.between(LocalDate.of(today[0], today[1], today[2]),
                     LocalDate.of(election[0], election[1], election[2]));
             int[] left = new int[] {diff.getYears(), diff.getMonths(), diff.getDays()};
@@ -89,6 +90,7 @@ public class Voting extends Fragment {
             }
 
             nextElectionDay = election[1] + "/" + election[2] + "/" + election[0];
+            Log.d("LLL", nextElectionDay);
             return null;
         }
 
@@ -99,7 +101,7 @@ public class Voting extends Fragment {
             nextElection.setText(nextElectionDay);
         }
 
-        private int getDay(int year) {
+        private int[] getDay(int year) {
             int cYear = year + year%2;
             try{
                 Document cDoc = Jsoup.connect("https://en.wikipedia.org/wiki/" + cYear + "_United_States_elections").get();
@@ -109,10 +111,10 @@ public class Voting extends Fragment {
                 if(cText.charAt(cIndex+1)!=','){
                     cIndex2 = cIndex + 2;
                 }
-                return Integer.parseInt(cText.substring(cIndex, cIndex2));
+                return new int[] {cYear, Integer.parseInt(cText.substring(cIndex, cIndex2))};
             } catch (IOException error){
                 Log.d("LLL", ""+error);
-                return -1;
+                return new int[] {-1};
             }
         }
 

@@ -52,7 +52,7 @@ public class Issues extends Fragment {
     }
 
     private void setUpTabLayout() {
-        Issues.ViewPagerAdapter adapter = new Issues.ViewPagerAdapter(getFragmentManager());
+        Issues.ViewPagerAdapter adapter = new Issues.ViewPagerAdapter(getChildFragmentManager());
         adapter.add(new MyIssues(), "Saved Issues");
         adapter.add(new AllIssues(), "All Issues");
         viewPager.setAdapter(adapter);

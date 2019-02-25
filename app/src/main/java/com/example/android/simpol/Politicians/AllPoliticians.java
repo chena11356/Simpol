@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.android.simpol.R;
 
@@ -20,6 +21,7 @@ import java.io.IOException;
 
 public class AllPoliticians extends Fragment {
     private OnFragmentInteractionListener mListener;
+    TextView helloBlankFragment;
 
     public AllPoliticians() {
         // Required empty public constructor
@@ -41,6 +43,7 @@ public class AllPoliticians extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
+        helloBlankFragment = view.findViewById(R.id.hello_blank_fragment);
         new getWebsite().execute();
         return view;
     }
@@ -78,6 +81,7 @@ public class AllPoliticians extends Fragment {
             try{
                 Document doc = Jsoup.connect("https://www.congress.gov/search?q=%7B%22source%22%3A%22members%22%2C%22congress%22%3A%22116%22%7D").get();
                 builder.append("Connected successfully to doc");
+                helloBlankFragment.setText(builder.toString());
             } catch (IOException error){
                 builder.append("Error: ").append(error.getMessage()).append("\n");
             }

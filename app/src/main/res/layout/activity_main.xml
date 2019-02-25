@@ -29,6 +29,7 @@
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
+        app:labelVisibilityMode="labeled"
         android:id="@+id/navigation"
         style="@style/Widget.BottomNavigationView"
         android:layout_width="wrap_content"

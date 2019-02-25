@@ -40,7 +40,8 @@ public class AllPoliticians extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_politicians, container, false);
+        View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
+        return view;
     }
 
 
@@ -75,7 +76,7 @@ public class AllPoliticians extends Fragment {
 
             try{
                 Document doc = Jsoup.connect("https://www.congress.gov/search?q=%7B%22source%22%3A%22members%22%2C%22congress%22%3A%22116%22%7D").get();
-
+                builder.append("Connected successfully to doc");
             } catch (IOException error){
                 builder.append("Error: ").append(error.getMessage()).append("\n");
             }

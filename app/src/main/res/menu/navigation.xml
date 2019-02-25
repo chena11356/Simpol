@@ -3,30 +3,30 @@
     <item
         android:id="@+id/navigation_politicians"
         android:icon="@drawable/ic_action_politicians"
-        android:title="Politicians"
+        android:title=""
         android:theme="@style/Widget.BottomNavigationView" />
 
     <item
         android:id="@+id/navigation_issues"
         android:icon="@drawable/ic_action_issues"
-        android:title="Issues"
+        android:title=""
         android:theme="@style/Widget.BottomNavigationView"/>
 
     <item
         android:id="@+id/navigation_me"
         android:icon="@drawable/ic_action_me"
-        android:title="Me"
+        android:title=""
         android:theme="@style/Widget.BottomNavigationView"/>
 
     <item
         android:id="@+id/navigation_voting"
         android:icon="@drawable/ic_action_voting"
-        android:title="Voting"
+        android:title=""
         android:theme="@style/Widget.BottomNavigationView"/>
 
     <item
         android:id="@+id/navigation_setting"
         android:icon="@drawable/ic_action_settings"
-        android:title="Setting"
+        android:title=""
         android:theme="@style/Widget.BottomNavigationView"/>
 </menu>

@@ -41,6 +41,7 @@ public class AllPoliticians extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
+        new getWebsite().execute();
         return view;
     }
 

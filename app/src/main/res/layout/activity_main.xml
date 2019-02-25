@@ -25,7 +25,7 @@
         android:id="@+id/navigation"
         app:labelVisibilityMode="unlabeled"
         style="@style/Widget.BottomNavigationView"
-        android:layout_width="wrap_content" 
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"

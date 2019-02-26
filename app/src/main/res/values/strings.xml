@@ -23,4 +23,6 @@ limitations under the License. -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tab_text">My Elected Officials</string>
     <string name="tab_text2">All Politicians</string>
+
+    <string name="accessToken">sk.eyJ1Ijoic2ltcG9sIiwiYSI6ImNqc2ttczloOTI5b2k0OXFnYmczOThvdjQifQ.Vd0Kh3UHx__fy3fo9N3Img</string>
 </resources>

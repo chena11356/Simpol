@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.simpol.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jsoup.Jsoup;
@@ -23,6 +27,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 //GO ALL THE WAY TO THE BOTTOM TO A CLASS CALLED getWebsite
 
@@ -30,7 +36,7 @@ public class AllPoliticians extends Fragment {
     private OnFragmentInteractionListener mListener;
     TextView helloBlankFragment;
     FirebaseFirestore db;
-    ArrayList<Politician> politicianArrayList;
+    ArrayList<Map<String,Object>> politicianArrayList;
 
     public AllPoliticians() {
         // Required empty public constructor
@@ -47,7 +53,7 @@ public class AllPoliticians extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
         helloBlankFragment = view.findViewById(R.id.hello_blank_fragment);
-        politicianArrayList = new ArrayList<Politician>();
+        politicianArrayList = new ArrayList<Map<String,Object>>();
         db = FirebaseFirestore.getInstance();
         initializePoliticians();
         return view;
@@ -64,21 +70,44 @@ public class AllPoliticians extends Fragment {
                 String[] tokens = line.split(",");
 
                 //read the data
-                Politician politician = new Politician();
-                politician.setName(tokens[0]);
-                politician.setCongressURL(tokens[1]);
-                politician.setState(tokens[2]);
-                politician.setDistrict(Integer.parseInt(tokens[3]));
-                politician.setParty(tokens[4]);
-                politician.setTerms(tokens[5]);
+                Map<String,Object> politician = new HashMap<>();
+                politician.put("name",tokens[0]);
+                politician.put("congressURL",tokens[1]);
+                politician.put("state",tokens[2]);
+                politician.put("district",tokens[3]);
+                politician.put("party",tokens[4]);
+                politician.put("terms",tokens[5]);
                 politicianArrayList.add(politician);
 
-                Log.d("lllll" ,"Just Created " +politician);
+                Log.d("lllll" ,"Just Created " +politician.get("name"));
 
             }
         } catch (IOException e1) {
             Log.e("lllll", "Error" + line, e1);
             e1.printStackTrace();
+            return;
+        }
+        initializePoliticiansFirestore();
+    }
+
+    public void initializePoliticiansFirestore(){
+        Map<String,Object> curPolitician;
+        for (int i = 0; i < politicianArrayList.size(); i++) {
+            curPolitician = politicianArrayList.get(i);
+            db.collection("politicians")
+                    .add(curPolitician)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d("zzzzz", "DocumentSnapshot added with ID: " + documentReference.getId());
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("zzzzz", "Error adding document", e);
+                        }
+                    });
         }
     }
 
@@ -127,6 +156,7 @@ public class AllPoliticians extends Fragment {
         }
     }
 
+    /*
     private class Politician {
         private String name;
         private String congressURL;
@@ -171,6 +201,7 @@ public class AllPoliticians extends Fragment {
             terms = termsNew;
         }
     }
+    */
 
     /*
     //do stuff in the doInBackground method

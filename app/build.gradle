@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -30,6 +31,7 @@ dependencies {
     // You'll probably have to update the version numbers in guild.gradle (Project)
     implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
     implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.google.firebase:firebase-firestore:18.0.1'
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
     androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
@@ -41,4 +43,5 @@ dependencies {
     })
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.7'
 }

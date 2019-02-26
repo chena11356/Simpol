@@ -18,26 +18,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-
-import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.Point;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
-
-
-
 public class Voting extends Fragment {
-    private MapView mapView;
     private TextView daysLeft;
     private TextView nextElection;
     private OnFragmentInteractionListener mListener;
@@ -59,13 +40,9 @@ public class Voting extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Mapbox.getInstance(MainActivity.getAppContext(), getString(R.string.accessToken));
         View view = inflater.inflate(R.layout.fragment_voting, container, false);
         daysLeft = view.findViewById(R.id.daysLeft);
         nextElection = view.findViewById(R.id.nextElection);
-
-        mapView = view.findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
         new getNextElection().execute();
 
         return view;
@@ -89,7 +66,7 @@ public class Voting extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private static class getNextElection extends AsyncTask<Void, Void, Void>{
+    private class getNextElection extends AsyncTask<Void, Void, Void>{
         private String daysLeftText = "";
         private String nextElectionDay;
 

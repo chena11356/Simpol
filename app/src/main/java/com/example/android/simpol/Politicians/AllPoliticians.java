@@ -60,11 +60,11 @@ public class AllPoliticians extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
         helloBlankFragment = view.findViewById(R.id.hello_blank_fragment);
-        /*politicianArrayList = new ArrayList<Map<String,Object>>();
+        politicianArrayList = new ArrayList<Map<String,Object>>();
         FirebaseApp.initializeApp(MainActivity.getAppContext());
         db = FirebaseFirestore.getInstance();
-        initializePoliticiansArray();
-        initializePoliticiansFirebase()*/
+        /*initializePoliticiansArray();
+        initializePoliticiansFirestore()*/
         getPoliticians();
         displayPoliticians();
         return view;
@@ -136,6 +136,7 @@ public class AllPoliticians extends Fragment {
 
     public ArrayList<Map<String,Object>> getPoliticians(){
         tempArr = new ArrayList<Map<String,Object>>();
+
         db.collection("politicians")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

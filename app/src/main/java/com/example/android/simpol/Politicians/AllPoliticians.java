@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.android.simpol.MainActivity;
 import com.example.android.simpol.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -54,6 +56,7 @@ public class AllPoliticians extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
         helloBlankFragment = view.findViewById(R.id.hello_blank_fragment);
         politicianArrayList = new ArrayList<Map<String,Object>>();
+        FirebaseApp.initializeApp(MainActivity.getAppContext());
         db = FirebaseFirestore.getInstance();
         initializePoliticians();
         return view;

@@ -14,11 +14,15 @@ import android.widget.TextView;
 
 import com.example.android.simpol.MainActivity;
 import com.example.android.simpol.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -39,6 +43,7 @@ public class AllPoliticians extends Fragment {
     TextView helloBlankFragment;
     FirebaseFirestore db;
     ArrayList<Map<String,Object>> politicianArrayList;
+    ArrayList<Map<String,Object>> tempArr;
 
     public AllPoliticians() {
         // Required empty public constructor
@@ -55,14 +60,17 @@ public class AllPoliticians extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
         helloBlankFragment = view.findViewById(R.id.hello_blank_fragment);
-        politicianArrayList = new ArrayList<Map<String,Object>>();
+        /*politicianArrayList = new ArrayList<Map<String,Object>>();
         FirebaseApp.initializeApp(MainActivity.getAppContext());
         db = FirebaseFirestore.getInstance();
-        initializePoliticians();
+        initializePoliticiansArray();
+        initializePoliticiansFirebase()*/
+        getPoliticians();
+        displayPoliticians();
         return view;
     }
 
-    public void initializePoliticians(){
+    public void initializePoliticiansArray(){
         InputStream is = getResources().openRawResource(R.raw.search_results_feb_25);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8")));
@@ -90,7 +98,6 @@ public class AllPoliticians extends Fragment {
             e1.printStackTrace();
             return;
         }
-        initializePoliticiansFirestore();
     }
 
     public void initializePoliticiansFirestore(){
@@ -125,6 +132,35 @@ public class AllPoliticians extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public ArrayList<Map<String,Object>> getPoliticians(){
+        tempArr = new ArrayList<Map<String,Object>>();
+        db.collection("politicians")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("wwwww", document.getId() + " => " + document.get("name"));
+                                tempArr.add(document.getData());
+                            }
+                        } else {
+                            Log.w("wwwww", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+        politicianArrayList = tempArr;
+        return tempArr;
+    }
+
+    public void displayPoliticians(){
+        StringBuilder builder = new StringBuilder();
+        for (Map<String,Object> pol : politicianArrayList){
+            builder.append(pol.get("name")).append("\n");
+        }
+        helloBlankFragment.setText(builder.toString());
     }
 
     public interface OnFragmentInteractionListener {

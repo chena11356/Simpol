@@ -63,14 +63,15 @@ public class AllPoliticians extends Fragment {
         politicianArrayList = new ArrayList<Map<String,Object>>();
         FirebaseApp.initializeApp(MainActivity.getAppContext());
         db = FirebaseFirestore.getInstance();
-        /*initializePoliticiansArray();
-        initializePoliticiansFirestore()*/
+        /*
+        WARNING: INITIALIZING POLITICIANS WILL RESET THE DATABASE
+        initializePoliticians();
+         */
         getPoliticians();
-        displayPoliticians();
         return view;
     }
 
-    public void initializePoliticiansArray(){
+    public void initializePoliticians(){
         InputStream is = getResources().openRawResource(R.raw.search_results_feb_25);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8")));
@@ -78,7 +79,7 @@ public class AllPoliticians extends Fragment {
         try {
             while ((line = reader.readLine()) != null) {
                 //set splitter
-                String[] tokens = line.split(",");
+                String[] tokens = line.split(";");
 
                 //read the data
                 Map<String,Object> politician = new HashMap<>();
@@ -98,6 +99,7 @@ public class AllPoliticians extends Fragment {
             e1.printStackTrace();
             return;
         }
+        initializePoliticiansFirestore();
     }
 
     public void initializePoliticiansFirestore(){
@@ -135,8 +137,6 @@ public class AllPoliticians extends Fragment {
     }
 
     public ArrayList<Map<String,Object>> getPoliticians(){
-        tempArr = new ArrayList<Map<String,Object>>();
-
         db.collection("politicians")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -145,18 +145,22 @@ public class AllPoliticians extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("wwwww", document.getId() + " => " + document.get("name"));
-                                tempArr.add(document.getData());
+                                politicianArrayList.add(document.getData());
                             }
                         } else {
                             Log.w("wwwww", "Error getting documents.", task.getException());
                         }
+                        for (int i = 0; i < politicianArrayList.size();i++){
+                            Log.d("AAAA",politicianArrayList.get(i).get("name")+" is in the list");
+                        }
+                        displayPoliticians();
                     }
                 });
-        politicianArrayList = tempArr;
-        return tempArr;
+        return politicianArrayList;
     }
 
     public void displayPoliticians(){
+        Log.d("AAAAAAAAAA","Displaying politicians");
         StringBuilder builder = new StringBuilder();
         for (Map<String,Object> pol : politicianArrayList){
             builder.append(pol.get("name")).append("\n");

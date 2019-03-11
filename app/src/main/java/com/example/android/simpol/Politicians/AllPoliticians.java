@@ -305,6 +305,7 @@ public class AllPoliticians extends Fragment {
             } catch (IOException e) {
                 Log.d("QQQ","io exception ew");
             }
+            return null;
         }
 
         @Override

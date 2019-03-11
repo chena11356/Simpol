@@ -37,6 +37,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,11 +77,8 @@ public class AllPoliticians extends Fragment {
         initializePoliticians();
          */
         //getPoliticians();
-        try {
-            submittingForm();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        DatabaseTest test = new DatabaseTest();
+        test.execute();
         return view;
     }
 
@@ -181,32 +179,6 @@ public class AllPoliticians extends Fragment {
         helloBlankFragment.setText(builder.toString());
     }
 
-    public void submittingForm() throws Exception {
-        try (final WebClient webClient = new WebClient()) {
-
-            // Get the first page
-            final HtmlPage page1 = webClient.getPage("https://nyc.pollsitelocator.com/search");
-
-            // Get the form that we are dealing with and within that form,
-            // find the submit button and the field that we want to change.
-            final HtmlForm form = page1.getFormByName("frmMain");
-
-            final HtmlTextInput houseNumberField = form.getInputByName("txtHouseNumber");
-            final HtmlTextInput streetNameField = form.getInputByName("txtStreetName");
-            final HtmlTextInput zipCodeField = form.getInputByName("txtZipCode");
-            final HtmlAnchor submitAnchor = page1.getAnchorByHref("javascript:void(0);");
-
-            // Change the value of the text field
-            houseNumberField.type("123-17");
-            streetNameField.type("6th Ave");
-            zipCodeField.type("11356");
-
-            // Now submit the form by clicking the button and get back the second page.
-            final HtmlPage page2 = submitAnchor.click();
-            helloBlankFragment.setText(page2.getTitleText());
-        }
-    }
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -286,11 +258,10 @@ public class AllPoliticians extends Fragment {
     }
     */
 
-    /*
+
     //do stuff in the doInBackground method
-    private class databaseTest extends AsyncTask<Void, Void, Void>{
+    private class DatabaseTest extends AsyncTask<Void, Void, Void>{
         StringBuilder builder = new StringBuilder();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         @Override
         protected void onPreExecute() {
@@ -299,14 +270,41 @@ public class AllPoliticians extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-
+            /*
             try{
                 Document doc = Jsoup.connect("https://www.congress.gov/search?q=%7B%22source%22%3A%22members%22%2C%22congress%22%3A%22116%22%7D").get();
                 builder.append("Connected successfully to doc");
             } catch (IOException error){
                 builder.append("Error: ").append(error.getMessage()).append("\n");
             }
-            return null;
+            return null;*/
+            try (final WebClient webClient = new WebClient()) {
+
+                // Get the first page
+                final HtmlPage page1 = webClient.getPage("https://nyc.pollsitelocator.com/search");
+
+                // Get the form that we are dealing with and within that form,
+                // find the submit button and the field that we want to change.
+                final HtmlForm form = page1.getFormByName("frmMain");
+
+                final HtmlTextInput houseNumberField = form.getInputByName("txtHouseNumber");
+                final HtmlTextInput streetNameField = form.getInputByName("txtStreetName");
+                final HtmlTextInput zipCodeField = form.getInputByName("txtZipCode");
+                final HtmlAnchor submitAnchor = page1.getAnchorByHref("javascript:void(0);");
+
+                // Change the value of the text field
+                houseNumberField.type("123-17");
+                streetNameField.type("6th Ave");
+                zipCodeField.type("11356");
+
+                // Now submit the form by clicking the button and get back the second page.
+                final HtmlPage page2 = submitAnchor.click();
+                builder.append(page2.getTitleText());
+            } catch (MalformedURLException e) {
+                Log.d("VVV","malformedURL ew");
+            } catch (IOException e) {
+                Log.d("QQQ","io exception ew");
+            }
         }
 
         @Override
@@ -314,5 +312,5 @@ public class AllPoliticians extends Fragment {
             helloBlankFragment.setText(builder.toString());
         }
     }
-    */
+
 }

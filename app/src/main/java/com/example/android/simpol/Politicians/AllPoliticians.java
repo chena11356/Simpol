@@ -14,6 +14,12 @@ import android.widget.TextView;
 
 import com.example.android.simpol.MainActivity;
 import com.example.android.simpol.R;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
+import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
+import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -60,14 +66,21 @@ public class AllPoliticians extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
         helloBlankFragment = view.findViewById(R.id.hello_blank_fragment);
+        /*
         politicianArrayList = new ArrayList<Map<String,Object>>();
         FirebaseApp.initializeApp(MainActivity.getAppContext());
         db = FirebaseFirestore.getInstance();
+        */
         /*
         WARNING: INITIALIZING POLITICIANS WILL RESET THE DATABASE
         initializePoliticians();
          */
-        getPoliticians();
+        //getPoliticians();
+        try {
+            submittingForm();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
@@ -166,6 +179,32 @@ public class AllPoliticians extends Fragment {
             builder.append(pol.get("name")).append("\n");
         }
         helloBlankFragment.setText(builder.toString());
+    }
+
+    public void submittingForm() throws Exception {
+        try (final WebClient webClient = new WebClient()) {
+
+            // Get the first page
+            final HtmlPage page1 = webClient.getPage("https://nyc.pollsitelocator.com/search");
+
+            // Get the form that we are dealing with and within that form,
+            // find the submit button and the field that we want to change.
+            final HtmlForm form = page1.getFormByName("frmMain");
+
+            final HtmlTextInput houseNumberField = form.getInputByName("txtHouseNumber");
+            final HtmlTextInput streetNameField = form.getInputByName("txtStreetName");
+            final HtmlTextInput zipCodeField = form.getInputByName("txtZipCode");
+            final HtmlAnchor submitAnchor = page1.getAnchorByHref("javascript:void(0);");
+
+            // Change the value of the text field
+            houseNumberField.type("123-17");
+            streetNameField.type("6th Ave");
+            zipCodeField.type("11356");
+
+            // Now submit the form by clicking the button and get back the second page.
+            final HtmlPage page2 = submitAnchor.click();
+            helloBlankFragment.setText(page2.getTitleText());
+        }
     }
 
     public interface OnFragmentInteractionListener {

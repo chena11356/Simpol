@@ -1,6 +1,5 @@
 package com.example.android.simpol.Politicians;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,7 +30,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,13 +66,10 @@ public class AllPoliticians extends Fragment {
         WARNING: INITIALIZING POLITICIANS WILL RESET THE DATABASE
         initializePoliticians();
          */
-<<<<<<< HEAD
         //getPoliticians();
         DatabaseTest test = new DatabaseTest();
         test.execute();
-=======
         getPoliticians();
->>>>>>> parent of 1cabb54... added htmlunit stuff
         return view;
     }
 
@@ -274,33 +269,6 @@ public class AllPoliticians extends Fragment {
                 builder.append("Error: ").append(error.getMessage()).append("\n");
             }
             return null;*/
-            try (final WebClient webClient = new WebClient()) {
-
-                // Get the first page
-                final HtmlPage page1 = webClient.getPage("https://nyc.pollsitelocator.com/search");
-
-                // Get the form that we are dealing with and within that form,
-                // find the submit button and the field that we want to change.
-                final HtmlForm form = page1.getFormByName("frmMain");
-
-                final HtmlTextInput houseNumberField = form.getInputByName("txtHouseNumber");
-                final HtmlTextInput streetNameField = form.getInputByName("txtStreetName");
-                final HtmlTextInput zipCodeField = form.getInputByName("txtZipCode");
-                final HtmlAnchor submitAnchor = page1.getAnchorByHref("javascript:void(0);");
-
-                // Change the value of the text field
-                houseNumberField.type("123-17");
-                streetNameField.type("6th Ave");
-                zipCodeField.type("11356");
-
-                // Now submit the form by clicking the button and get back the second page.
-                final HtmlPage page2 = submitAnchor.click();
-                builder.append(page2.getTitleText());
-            } catch (MalformedURLException e) {
-                Log.d("VVV","malformedURL ew");
-            } catch (IOException e) {
-                Log.d("QQQ","io exception ew");
-            }
             return null;
         }
 

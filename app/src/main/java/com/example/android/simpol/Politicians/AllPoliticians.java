@@ -14,12 +14,6 @@ import android.widget.TextView;
 
 import com.example.android.simpol.MainActivity;
 import com.example.android.simpol.R;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
-import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,18 +61,20 @@ public class AllPoliticians extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_politicians, container, false);
         helloBlankFragment = view.findViewById(R.id.hello_blank_fragment);
-        /*
         politicianArrayList = new ArrayList<Map<String,Object>>();
         FirebaseApp.initializeApp(MainActivity.getAppContext());
         db = FirebaseFirestore.getInstance();
-        */
         /*
         WARNING: INITIALIZING POLITICIANS WILL RESET THE DATABASE
         initializePoliticians();
          */
+<<<<<<< HEAD
         //getPoliticians();
         DatabaseTest test = new DatabaseTest();
         test.execute();
+=======
+        getPoliticians();
+>>>>>>> parent of 1cabb54... added htmlunit stuff
         return view;
     }
 
